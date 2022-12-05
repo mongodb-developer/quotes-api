@@ -28,7 +28,7 @@ In the workspace, the following commands are available:
 * `atlas`: the Atlas CLI to manage your clusters, search indexes and more;
 * `mongosh`: the MongoDB Shell;
 * `atlas_up`: a helper script to create the Atlas cluster associated with the Gitpod workspace. This is the script that Gitpod runs when the workspace is created;
-* `atals_down`: a helper script to terminate the Atlas cluster associated with the Gitpod workspace. As there is no tear-down hook in Gitpod, it is recommended to run this command manually before terminating the environment.
+* `atlas_down`: a helper script to terminate the Atlas cluster associated with the Gitpod workspace. As there is no tear-down hook in Gitpod, it is recommended to run this command manually before terminating the environment.
 
 Atlas clusters are terminate automatically when the Gitpod workspace is stopped.
 
@@ -44,3 +44,26 @@ For this setup to work correctly you need the following:
   * The projectId needs to be set as the Gitpod environment variable `MONGODB_ATLAS_PROJECT_ID`;
   * The API public key needs to be set as the Gitpod environment variable `MONGODB_ATLAS_PUBLIC_API_KEY`;
   * The API private key needs to be set as the Gitpod environment variable `MONGODB_ATLAS_PRIVATEC_API_KEY`.
+
+If you don't have a MongoDB Atlas account and the environment variables listed above configured in your Gitpod settings the first time you start the environment, the creation of the Atlas cluster will fail.
+
+But fear not! There is an easy fix. In the Gipod terminal, use the following command:
+
+```
+$ atlas setup --noBrowser
+```
+
+You will be guided through the creation of an Atlas account. The `noBrowser` is needed otherwise Gitpod tries to open the web page for the account setup with the terminal browser Lynx, which is not supported by the registration page.
+
+Once you are all set, you can type the following command ([documentation](https://www.mongodb.com/docs/atlas/cli/stable/command/atlas-projects-apiKeys-create/)):
+
+```
+$ atlas projects apiKeys create [options]
+```
+
+This command will help you create the API key you need. To persist the API key to your Gitpod settings, you can use the [Gitpod CLI](https://www.gitpod.io/docs/references/gitpod-cli).
+For example, you can do:
+
+```
+$ gp env MONGODB_ATLAS_PUBLIC_API_KEY=<your public API key>
+```
