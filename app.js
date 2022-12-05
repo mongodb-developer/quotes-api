@@ -1,6 +1,7 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import * as dotenv from 'dotenv';
 import Express from 'express';
+import { resolve } from 'path';
 
 const app = Express();
 dotenv.config();
@@ -9,6 +10,10 @@ const uri = process.env.MONGODB_CONNECTION_STRING;
 const client = new MongoClient(uri, { serverApi: ServerApiVersion.v1 });
 const DB = 'quotes_db';
 const COLLECTION = 'quotes';
+
+app.get('/', (request, response) => {
+  response.sendFile(resolve('index.html'));
+});
 
 app.get('/random', async (request, response) => {
   try {
