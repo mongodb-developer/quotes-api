@@ -14,8 +14,8 @@ tasks:
       MONGODB_CONNECTION_STRING=$(atlas_up)
       sleep 5
       unzip data/quotes.zip -d data
-      mongosh $MONGODB_CONNECTION_STRING patterns/_load.js
-      patterns/_create-search-index.sh
+      mongosh $MONGODB_CONNECTION_STRING data/_load.js
+      data/_create-search-index.sh
   - name: Cleanup Atlas Cluster
     command: |
       atlas_cleanup_when_done
