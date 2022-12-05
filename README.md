@@ -4,6 +4,15 @@ Simple Node.js application that exposes an API to get popular quotes.
 
 This sample app was built to showcase how [MongoDB Atlas](https://mongodb.com/atlas) and [Gitpod](https://gitpod.io) are a great combination for a development environment in the cloud.
 
+## How to start the API server
+
+The API server can be started with:
+
+```
+$ node app.js
+```
+The server will listen for requests on port `3000`. Gitpod will make port `3000` automatically available in the browser and will expose the controls to make the URL public.
+
 ## What's available in the Gitpod environment
 
 This repository is configured to be able to start coding right away. When the environment boots up, the following things happen:
@@ -19,7 +28,9 @@ In the workspace, the following commands are available:
 * `atlas`: the Atlas CLI to manage your clusters, search indexes and more;
 * `mongosh`: the MongoDB Shell;
 * `atlas_up`: a helper script to create the Atlas cluster associated with the Gitpod workspace. This is the script that Gitpod runs when the workspace is created;
-* `atals_down`: a helper script to terminate the  Atlas cluster associated with the Gitpod workspace. As there is no tear-down hook in Gitpod, it is recommended to run this command manually before terminating the environment.
+* `atals_down`: a helper script to terminate the Atlas cluster associated with the Gitpod workspace. As there is no tear-down hook in Gitpod, it is recommended to run this command manually before terminating the environment.
+
+Atlas clusters are terminate automatically when the Gitpod workspace is stopped.
 
 ### Caveats
 
