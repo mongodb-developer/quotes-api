@@ -1,0 +1,8 @@
+{
+    "name": "quotes-search-index",
+    "collectionName": "quotes",
+    "database": "quotes_db",
+    "mappings": {
+      "dynamic": true
+    }
+  }
