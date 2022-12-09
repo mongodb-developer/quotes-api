@@ -43,7 +43,7 @@ For this setup to work correctly you need the following:
 * A MongoDB Atlas account, preconfigured with a Project already created and an API key with Project Owner access
   * The projectId needs to be set as the Gitpod environment variable `MONGODB_ATLAS_PROJECT_ID`;
   * The API public key needs to be set as the Gitpod environment variable `MONGODB_ATLAS_PUBLIC_API_KEY`;
-  * The API private key needs to be set as the Gitpod environment variable `MONGODB_ATLAS_PRIVATEC_API_KEY`.
+  * The API private key needs to be set as the Gitpod environment variable `MONGODB_ATLAS_PRIVATE_API_KEY`.
 
 If you don't have a MongoDB Atlas account and the environment variables listed above configured in your Gitpod settings the first time you start the environment, the creation of the Atlas cluster will fail.
 
@@ -58,12 +58,25 @@ You will be guided through the creation of an Atlas account. The `noBrowser` is 
 Once you are all set, you can type the following command ([documentation](https://www.mongodb.com/docs/atlas/cli/stable/command/atlas-projects-apiKeys-create/)):
 
 ```
-$ atlas projects apiKeys create [options]
+$ atlas projects apiKeys create --desc "Gitpod" --role "GROUP_OWNER"
 ```
 
-This command will help you create the API key you need. To persist the API key to your Gitpod settings, you can use the [Gitpod CLI](https://www.gitpod.io/docs/references/gitpod-cli).
+You'll need to be `GROUP_OWNER` in order to be able to create and delete databases.
+
+This command will help you create the API key you need. 
+
+You can find your `MONGODB_ATLAS_PROJECT_ID` using:
+
+```
+atlas projects list
+```
+
+
+To persist these values to your Gitpod [environment variable settings](https://gitpod.io/variables), you can use the [Gitpod CLI](https://www.gitpod.io/docs/references/gitpod-cli).
 For example, you can do:
 
 ```
-$ gp env MONGODB_ATLAS_PUBLIC_API_KEY=<your public API key>
+gp env MONGODB_ATLAS_PROJECT_ID=<your Atlas project id>
+gp env MONGODB_ATLAS_PUBLIC_API_KEY=<your public API key>
+gp env MONGODB_ATLAS_PRIVATE_API_KEY=<your private API key>
 ```

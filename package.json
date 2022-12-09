@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node app.js"
+  },
   "author": "Massimiliano Marcon <me@marcon.me>",
   "license": "Apache-2.0",
   "dependencies": {
