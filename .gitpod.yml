@@ -7,18 +7,36 @@ image:
   context: gitpod-config/docker-content
 
 tasks:
-  - name: Install dependencies
-    init: npm i
-  - name: Get a cluster + Seed it with test data + Create Atlas Search Index
+  - name: Cleanup Atlas Cluster
     command: |
+      atlas_cleanup_when_done
+  - name: Get a cluster + Seed it with test data + Create Atlas Search Index
+    init: npm install
+    command: |
+      if [ ! -n "${MONGODB_ATLAS_PROJECT_ID+1}" ]; then
+        echo "\$MONGODB_ATLAS_PROJECT_ID is not set. Lets try to login."
+        if ! atlas auth whoami &> /dev/null ; then
+          atlas auth login --noBrowser
+        fi
+      fi
       MONGODB_CONNECTION_STRING=$(atlas_up)
       sleep 5
       unzip data/quotes.zip -d data
       mongosh $MONGODB_CONNECTION_STRING data/_load.js
       data/_create-search-index.sh
-  - name: Cleanup Atlas Cluster
+      gp open app.js
+      gp sync-done data
+      echo
+      echo "⚠️ When you are done, use the command 'gp stop' so we shutdown your test database."
+  - name: node start
+    openMode: split-right
     command: |
-      atlas_cleanup_when_done
+      gp sync-await data
+      npm start
+
+ports:
+  - port: 3000
+    onOpen: open-preview
 
 vscode:
   extensions:
