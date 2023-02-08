@@ -8,14 +8,35 @@
   </head>
   <body>
     <div class="container mt-1">
-        <section class="content">
+        <main class="content">
             <h1>Welcome to the Quotes APIs!</h1>
-            <p>The available resources are:</p>
-            <uL>
-                <li class="mb-3"><code>/random</code>: returns a random quote.<br><a class="btn btn-primary" href="/random">Try it!</a></li>
-                <li><code>/search?q=&lt;query&gt;</code>: searches for quotes that matech a certain string (with fuzzy matching).<br><a class="btn btn-primary" href="/search?q=friend">Try it!</a></li>
-            </uL>
-        </section>
+            <h2>API Resources</h2>
+            <section>
+              <h3><code>/random</code></h3>
+              <p>
+                The <code>/random</code> endpoint returns a random quote from our database.
+              </p>
+              <h4>Parameters</h4>
+              <p>This endpoint does not take any parameter.</p>
+              <p>
+                <a class="btn btn-primary" href="/random">Try it!</a>
+              </p>
+            </section>
+            <hr>
+            <section>
+              <h3><code>/search</code></h3>
+              <p>
+                The <code>/search</code> endpoint is used to search our database for quotes that match a certain string (with fuzzy matching).
+              </p>
+              <h4>Parameters</h4>
+              <ul>
+                <li><code>q</code>: the string to search.</li>
+              </ul>
+              <p>
+                <a class="btn btn-primary" href="/search?q=friend">Try it!</a>
+              </p>
+            </section>
+          </main>
     </div>
   </body>
 </html>
