@@ -1,0 +1,34 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
+{
+	"name": "Existing Dockerfile",
+	"build": {
+		// Sets the run context to one level up instead of the .devcontainer folder.
+		"context": "..",
+		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+		"dockerfile": "Dockerfile"
+	},
+	"customizations": {
+    "vscode": {
+      "extensions": [
+        "mongodb.mongodb-vscode"
+      ]
+    }
+  },
+	"forwardPorts": [3000],
+
+	// Uncomment the next line to run commands after the container is created.
+	// "postCreateCommand": "cat /etc/os-release",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "node",
+	"containerEnv": {
+		"MONGODB_ATLAS_PROJECT_ID": "${localEnv:MONGODB_ATLAS_PROJECT_ID}",
+		"MONGODB_ATLAS_PUBLIC_API_KEY": "${localEnv:MONGODB_ATLAS_PUBLIC_API_KEY}",
+		"MONGODB_ATLAS_PRIVATE_API_KEY": "${localEnv:MONGODB_ATLAS_PRIVATE_API_KEY}",
+		"LOCAL_USER": "${localEnv:USER}"
+	}
+}
