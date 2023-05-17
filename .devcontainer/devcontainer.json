@@ -3,27 +3,20 @@
 {
 	"name": "Existing Dockerfile",
 	"build": {
-		// Sets the run context to one level up instead of the .devcontainer folder.
 		"context": "..",
-		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
 		"dockerfile": "Dockerfile"
 	},
 	"customizations": {
     "vscode": {
       "extensions": [
-        "mongodb.mongodb-vscode"
+        "mongodb.mongodb-vscode",
+				"dbaeumer.vscode-eslint",
+				"hashicorp.terraform"
       ]
     }
   },
 	"forwardPorts": [3000],
 
-	// Uncomment the next line to run commands after the container is created.
-	// "postCreateCommand": "cat /etc/os-release",
-
-	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
 	"remoteUser": "node",
 	"containerEnv": {
 		"MONGODB_ATLAS_PROJECT_ID": "${localEnv:MONGODB_ATLAS_PROJECT_ID}",
