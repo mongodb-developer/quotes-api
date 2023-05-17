@@ -17,7 +17,15 @@
             </ul>
             <p>Other fun things we support:</p>
             <ul>
-              <li class="mb-3"><code>/quote.html</code>: pretty and colorful view of your favorite quotes.<br><a class="btn btn-primary" href="/quote.html">Try it!</a></li>
+              <li class="mb-3"><code>/quote.html</code>: pretty and colorful view of your favorite quotes.<br><a class="btn btn-primary" href="/quote.html">Try it!</a>
+                <br><br> Runs this query:
+                <code>
+                  [
+                    { $match: { colors: { $ne: null } } },
+                    { $sample: { size: 1 } }
+                  ]
+                </code>
+              </li>
             </ul>
         </section>
     </div>

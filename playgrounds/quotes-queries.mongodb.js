@@ -6,13 +6,6 @@ db.getCollection('quotes').aggregate([
   { $sample: { size: 1 } }
 ]);
 
-// Get a random quote from the set of quotes that come with a color
-use('quotes_db');
-db.getCollection('quotes').aggregate([
-  { $match: { colors: {$ne: null} } },
-  { $sample: { size: 1 } }
-]);
-
 // Full-text search query with Atlas Search
 use('quotes_db');
 const searchQuery = 'friends';
@@ -40,22 +33,12 @@ db.getCollection('quotes').aggregate([
 // Get all the tags
 use('quotes_db');
 db.getCollection('quotes').aggregate([
-  {
-    $unwind: {
-      path: '$Tags'
-    }
-  },
-  {
-    $group: {
-      _id: '$Tags',
-      quotesWithThisTag: {
-        $sum: 1
-      }
-    }
-  },
-  {
-    $sort: {
-      quotesWithThisTag: -1
-    }
-  }
+
+]);
+
+// Get a random quote from the set of quotes that come with a color
+use('quotes_db');
+db.getCollection('quotes').aggregate([
+  { $match: { colors: { $ne: null } } },
+  { $sample: { size: 1 } }
 ]);
