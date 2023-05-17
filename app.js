@@ -11,13 +11,23 @@ const client = new MongoClient(uri, { serverApi: ServerApiVersion.v1 });
 const DB = 'quotes_db';
 const COLLECTION = 'quotes';
 
-app.get('/', (request, response) => {
-  response.sendFile(resolve('index.html'));
-});
+app.use(Express.static('public'))
 
 app.get('/random', async (request, response) => {
   try {
     const results = await client.db(DB).collection(COLLECTION).aggregate([
+      { $sample: { size: 1 } }
+    ]).toArray();
+    response.send(results);
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+  }
+});
+
+app.get('/randomWithColor', async (request, response) => {
+  try {
+    const results = await client.db(DB).collection(COLLECTION).aggregate([
+      { $match: { colors: {$ne: null} } },
       { $sample: { size: 1 } }
     ]).toArray();
     response.send(results);
