@@ -22,11 +22,13 @@
       (async () => {
         const quoteElement = document.querySelector('.quote');
         const authorElement = document.querySelector('.author');
+        const bodyElement = document.querySelector('body');
         const response = await fetch('/randomWithColor');
         if(response.ok) {
           const quotes = await response.json();
           const quote = quotes.pop();
           quoteElement.textContent = quote?.Quote;
+          bodyElement.style.backgroundColor = `rgba(${quote.colors[0].concat(0.2).join()})`;
           quoteElement.style.color = `rgb(${quote.colors[1].join()})`;
           authorElement.textContent = quote?.Author;
           authorElement.style.color = `rgb(${quote.colors[2].join()})`;

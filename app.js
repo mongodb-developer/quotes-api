@@ -1,7 +1,6 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import * as dotenv from 'dotenv';
 import Express from 'express';
-import { resolve } from 'path';
 
 const app = Express();
 dotenv.config();
@@ -11,7 +10,7 @@ const client = new MongoClient(uri, { serverApi: ServerApiVersion.v1 });
 const DB = 'quotes_db';
 const COLLECTION = 'quotes';
 
-app.use(Express.static('public'))
+app.use(Express.static('public'));
 
 app.get('/random', async (request, response) => {
   try {
@@ -27,7 +26,7 @@ app.get('/random', async (request, response) => {
 app.get('/randomWithColor', async (request, response) => {
   try {
     const results = await client.db(DB).collection(COLLECTION).aggregate([
-      { $match: { colors: {$ne: null} } },
+      { $match: { colors: { $ne: null } } },
       { $sample: { size: 1 } }
     ]).toArray();
     response.send(results);

@@ -10,7 +10,7 @@
     "vscode": {
       "extensions": [
         "mongodb.mongodb-vscode",
-				"dbaeumer.vscode-eslint",
+				"standard.vscode-standard",
 				"hashicorp.terraform"
       ]
     }
